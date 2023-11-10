@@ -1,0 +1,86 @@
+.ProductPageContainer{
+    display: flex;
+    width: 100vw;
+    // align-items: center;
+    justify-content: center;
+    padding: 0 10vw;
+    .left{
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    }
+    .right{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-top: 3rem;
+        .productTitle{
+            font-size: 50px;
+            // font-weight: 700;
+        }
+        .productDesc{
+            font-size: 19px;
+            margin-top: 2rem;
+        }
+        .productPrice{
+            font-size: 30px;
+            font-weight: 700;
+            margin-top: 2rem;
+        }
+        .quantity_container{
+            display: flex;
+            margin-top: 3rem;
+            align-items: center;
+            .quantity_btn{
+                width: 2.5rem;
+                height: 2.5rem;
+                border: 1px solid black;
+                outline: none;
+                font-size: 20px;
+                cursor: pointer;
+            }
+            .quantity{
+                width: 3.5rem;
+                height: 2.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-top: 1px solid black;
+                border-bottom: 1px solid black;
+                font-size: 20px;
+            }
+        }
+        .btn_container{
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            .addToCart, .wishlist{
+                width: 12rem;
+                height: 3rem;
+                display: flex;
+                gap: 3px;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                cursor: pointer;
+                .icon{
+                    width: 2vw;
+                    height: 3.5vh;
+                }
+            }
+        }
+        .division_line{
+            margin-bottom: 1rem;
+        }
+        .labels{
+            font-size: 19px;
+        }
+    }
+}

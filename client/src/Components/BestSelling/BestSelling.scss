@@ -1,0 +1,21 @@
+.BestSelling_Container{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 10vw;
+    gap: 4rem;
+    h1{
+        font-size: 45px;
+    }
+    .card_Container{
+       display: flex;
+       flex-wrap: wrap;
+       gap: 3rem;
+       justify-content: center;
+       .card_To_Product_Link{
+            color: black;
+            text-decoration: none;
+       }
+    }
+}

@@ -1,0 +1,167 @@
+.navbar-container {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100px;
+    padding: 0 4rem;
+    justify-content: space-between;
+    background-color: #092143;
+    color: white;
+
+    .left {
+        flex: 1;
+
+        h1 {
+            font-size: 30px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    }
+
+    .middle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 6;
+
+        .searchBox {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            width: 80%;
+            height: 50px;
+            border-radius: 5px;
+            padding: 0 7px;
+            justify-content: space-between;
+
+            input {
+                font-size: 18px;
+                padding-left: 10px;
+                outline: none;
+                border: none;
+                width: 100%;
+            }
+
+            .searchIcon {
+                width: 70px;
+                height: 35px;
+                padding: 5px 0;
+                color: white;
+                border-radius: 6px;
+                background-color: #f5af35;
+            }
+
+            .searchIcon:hover {
+                cursor: pointer;
+                background-color: #092143;
+            }
+        }
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+        flex: 2;
+        gap: 10px;
+
+        .icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+
+            .icon {
+                position: relative;
+
+                .number {
+                    position: absolute;
+                    top: -13%;
+                    right: -10%;
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    background-color: #f5af35;
+                    font-size: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 500;
+                }
+            }
+
+            .icon :hover {
+                color: #f5af35;
+                cursor: pointer;
+            }
+        }
+
+        .login {
+            background-color: white;
+            color: black;
+            height: 40px;
+            border-radius: 7px;
+            width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-left: 20px;
+            cursor: pointer;
+            border: none;
+
+            p {
+                font-size: 16px;
+                font-weight: 700;
+            }
+        }
+
+        .login:hover {
+            background-color: #f5af35;
+            color: white;
+
+            p {
+                font-weight: 500;
+            }
+        }
+
+        .login2 {
+            width: 80px;
+            height: 40px;
+            background-color: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            margin-left: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+        }
+
+        .login2:hover {
+            cursor: pointer;
+            background-color: #f5af35;
+            color: white;
+            font-weight: 500;
+        }
+    }
+
+    &.sticky_navbar {
+        position: sticky;
+        top: 0;
+        transform: translateY(-100px);
+        animation: stickyHeader 0.3s ease forwards;
+        z-index: 500;
+        // because of adding 'forwards' the animation stops at the last key frame.
+    }
+}
+@keyframes stickyHeader {
+    0%{
+        transform: translateY(-80px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}

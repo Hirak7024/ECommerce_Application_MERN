@@ -1,0 +1,132 @@
+.shopping_cart {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;  //if postion is absolute and top is 0 so it is 0 px from beginning of webpage, but if position is fixed and top is 0, it is 0 px from the top of part of page that is visible
+    top: 0;
+    left: 0;
+    z-index: 700;
+
+    .dark_background {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0, 0.5);
+    }
+
+    .cart_container {
+        width: 25rem;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: white;
+        z-index: 250;
+
+        .cartContainerHead {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 25px;
+            border-bottom: 1px solid rgb(197, 195, 195);
+
+            .header {
+                font-size: 25px;
+                font-weight: 600;
+            }
+
+            .close_btn {
+                border: none;
+                outline: none;
+                cursor: pointer;
+                background-color: white;
+                font-size: 20px;
+                margin-right: 10px;
+            }
+        }
+
+        .cart {
+            height: 70vh;
+            overflow-y: scroll;            
+            .empty_cart {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                top: 8rem;
+                gap: 20px;
+
+                .empty_cart_icon {
+                    width: 15vw;
+                    height: 15vh;
+                    color: grey;
+                    font-weight: 200;
+                }
+
+                .empty_cart_head {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+
+                .returnToShop {
+                    border: none;
+                    outline: none;
+                    background-color: #092143;
+                    padding: 15px 20px;
+                    color: white;
+                    font-size: 20px;
+                    font-weight: 500;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+        .cart::-webkit-scrollbar{
+            width: 0;
+        }
+
+        .cartContainerBottom {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+
+            .subtotal_box {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem 3rem 1rem 1rem; //top right bottom left
+                width: 100%;
+                box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+
+                .subtotal {
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+
+                .subtotal_price {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+            }
+
+            .checkoutbtn {
+                width: 90%;
+                height: 3.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                font-weight: 700;
+                cursor: pointer;
+                background-color: #092143;
+                color: white;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+}

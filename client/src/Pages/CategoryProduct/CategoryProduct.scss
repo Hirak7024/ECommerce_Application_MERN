@@ -1,0 +1,22 @@
+.CategoryProduct_Container{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    padding: 5vh 10vw;
+    h1{
+        font-size: 45px;
+        font-weight: 700;
+    }
+    .ProductsContainer{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        justify-content: center;
+        .card_To_Product_Link{
+            text-decoration: none;
+            color: black;
+        }
+    }
+}

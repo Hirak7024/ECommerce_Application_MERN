@@ -1,0 +1,107 @@
+.login_Container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    background: linear-gradient(120deg, #092143, #009ffd);
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .login_form {
+        display: flex;
+        flex-direction: column;
+        width: 32rem;
+        align-items: center;
+        background-color: white;
+        padding: 4vh 3vw;
+        border-radius: 5px;
+
+        .formHeading {
+            font-size: 35px;
+            margin-bottom: 2rem;
+        }
+
+        .labelInput {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+
+            label {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            input {
+                font-size: 18px;
+                outline: none;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 2px solid #092143;
+                height: 1.7rem;
+
+            }
+            .password_container{
+                position: relative;
+                .password_input{
+                    font-size: 18px;
+                    outline: none;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                    border-bottom: 2px solid #092143;
+                    height: 1.7rem;
+                    width: 100%;
+                }
+                .icon{
+                    position: absolute;
+                    right: 0;
+                    top: -0.5rem;
+                    cursor: pointer;
+                }
+            }
+            .error{
+                font-size: 13px;
+                color: red;
+                font-weight: 600;
+            }
+        }
+
+            .login_btn {
+                width: 8rem;
+                height: 2.8rem;
+                border: none;
+                background-color: #092143;
+                outline: none;
+                color: white;
+                font-size: 17px;
+                font-weight: 500;
+                cursor: pointer;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+                border-radius: 3px;
+            }
+
+            .registerLink_Box {
+                display: flex;
+                font-size: 15px;
+                gap: 5px;
+
+                .register_Link {
+                    color: #092143;
+                    cursor: pointer;
+                    font-weight: 600;
+                    text-decoration: none;
+                }
+
+                .register_Link:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
