@@ -13,13 +13,14 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Photo: {
-        type: String
-    },
     Category: {
         type: String,
         required: true
     },
+    Image: {
+        type: String,
+        required: true
+    }
 },
     { timeStamps: true }
 )

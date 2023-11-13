@@ -10,6 +10,7 @@
     position: relative;
     transition-property: all;
     transition-duration: 0.3s;
+    background-color: white;
     cursor: pointer;
     .like_icon{
         width: 2vw;
@@ -37,7 +38,7 @@
       }
     }
     .product_title{
-      font-size: 23px;
+      font-size: 25px;
       font-weight: 700;
       margin-top: 15px;
       text-overflow: ellipsis;

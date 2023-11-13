@@ -1,21 +1,22 @@
 import express from "express";
 import mongoose from "mongoose";
-import ProductRouter from "./Routes/Product.js";
-import UserRouter from "./Routes/User.js";
+import cors from "cors";
 import dotenv from "dotenv";
+import ProductRoute from "./Routes/ProductRoute.js"
 
 dotenv.config();
-const PORT = 8001;
+const PORT = process.env.PORT;
+
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-mongoose.connect("mongodb://127.0.0.1:27017/Find_In_Node", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGO_CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>console.log("MongoDB Connected"))
-.catch((err)=>console.log(err));
+.catch((error)=>console.log(error));
 
-mongoose.connection.on("disconnected", ()=>console.log("MongoDB Disconnected"));
+mongoose.connection.on("disconnected",()=>console.log("MongoDB Disconnected"));
 
-app.use("/api/product", ProductRouter);
-app.use("/api/user", UserRouter);
+app.use("/api/products", ProductRoute);
 
-app.listen(PORT, ()=>console.log(`Server running at PORT ${PORT}`));
+app.listen(PORT, ()=>console.log(`Server Running at PORT ${PORT}`));

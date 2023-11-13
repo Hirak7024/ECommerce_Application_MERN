@@ -8,6 +8,7 @@ export default function BestSelling() {
         <div className='BestSelling_Container'>
             <h1>Best Selling Produts</h1>
             <div className="card_Container">
+                {/* <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
                 <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
                 <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
                 <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
@@ -18,8 +19,7 @@ export default function BestSelling() {
                 <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
                 <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
                 <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
-                <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
-                <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link>
+                <Link to={"/productPage/2"} className='card_To_Product_Link'><Card/></Link> */}
             </div>
         </div>
     )

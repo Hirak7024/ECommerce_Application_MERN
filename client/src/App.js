@@ -34,7 +34,8 @@ export default function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/productPage/:id' element={<ProductPage />} />
         <Route path='/wishlistPage/:id' element={<WishListPage />} />
-        <Route path='/categoryProduct/:id' element={<CategoryProduct />} />
+        <Route path='/categoryProduct/:id/:pageNumber' element={<CategoryProduct />} />
+        <Route path='/categoryProduct/:id/' element={<CategoryProduct />} />
       </Routes>
     </>
   )
