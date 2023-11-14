@@ -73,6 +73,7 @@ export default function Register() {
 
   return (
     <div className='login_Container'>
+      <h1 className="close_mark_btn" onClick={()=>navigate("/")}>X</h1>
       <form className='login_form' onSubmit={handleSubmit}>
         <h1 className="formHeading">Register</h1>
         <div className="labelInput">

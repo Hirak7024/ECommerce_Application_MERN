@@ -9,6 +9,15 @@
     position: absolute;
     top: 0;
     left: 0;
+    .close_mark_btn{
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        position: absolute;
+        right: 2vw;
+        top: 3vh;
+        cursor: pointer;
+    }
 
     .login_form {
         display: flex;

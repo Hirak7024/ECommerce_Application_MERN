@@ -1,35 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Card from '../../Components/Card/Card';
-import { Link, useParams } from 'react-router-dom';
-import "./CategoryProduct.scss";
+import React, { useContext, useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import ProductsByPage from '../../Components/ProductsByPage/ProductsByPage';
+import { Context } from '../../Utils/Context';
+import "./CategoryProduct.scss";
 
 export default function CategoryProduct() {
-    const { id } = useParams();  //useParams returns a string
-    // const { pageNumber } = useParams();
-    const [selectedCategory, setSelectedCategory] = useState("all");
+    // const {pageNumber} = useParams();
+    // const [selectedCategory, setSelectedCategory] = useState(Category);
+    const {selectedCategory, setSelectedCategory} = useContext(Context);
     const [selectedPriceRange, setSelectedPriceRange] = useState(null);
     const [minPrice, setMinPrice] = useState(1000);
     const [maxPrice, setMaxPrice] = useState(1000000);
-    // const [Category, setCategory] = useState(null);
-    // console.log(id);
-    // console.log(pageNumber);
 
-    useEffect(() => {
-        if (id === "1") {
-            setSelectedCategory("laptops");
-        } else if (id === "2") {
-            setSelectedCategory("smartphones");
-        } else if (id === "3") {
-            setSelectedCategory("headphones");
-        } else if (id === "4") {
-            setSelectedCategory("speakers");
-        }
-    }, []);
+    const location = useLocation();
 
     useEffect(() => {
         if (selectedPriceRange === null) {
-            // Set default values when selectedPriceRange is null
             setMinPrice(1000);
             setMaxPrice(1000000);
         } 
@@ -46,12 +32,6 @@ export default function CategoryProduct() {
             setSelectedPriceRange(value);
         }
     };
-    //   console.log(selectedCategory);
-    // console.log(selectedPriceRange);
-    // console.log(minPrice);
-    // console.log(maxPrice);
-    // console.log(id);
-    // console.log(Category);
 
     return (
         <div className='CategoryProduct_Container'>
@@ -204,6 +184,7 @@ export default function CategoryProduct() {
                     selectedCategory={selectedCategory}
                     minPrice={minPrice}
                     maxPrice={maxPrice}
+                    // pageNumber={pageNumber}
                      />
                 </div>
             </div>

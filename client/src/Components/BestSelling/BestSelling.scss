@@ -5,7 +5,7 @@
     align-items: center;
     padding: 10vh 10vw;
     gap: 4rem;
-    h1{
+    .bestSelling_Heading{
         font-size: 45px;
     }
     .card_Container{
@@ -13,9 +13,23 @@
        flex-wrap: wrap;
        gap: 3rem;
        justify-content: center;
-       .card_To_Product_Link{
-            color: black;
-            text-decoration: none;
+       .loading_text{
+        font-size: 20px;
+        font-weight: 700;
        }
+       .error_text{
+        font-size: 20px;
+        font-weight: 700;
+       }
+       .bestSelling_Container{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+           .card_To_Product_Link{
+               color: black;
+               text-decoration: none;
+            }
+        }
     }
 }

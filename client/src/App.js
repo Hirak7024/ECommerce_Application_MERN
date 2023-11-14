@@ -12,6 +12,7 @@ import CategoryProduct from './Pages/CategoryProduct/CategoryProduct';
 
 export default function App() {
   const { showCart } = useContext(Context);
+  const {pageNumber, setPageNumber} = useContext(Context);
   useEffect(() => {
     if (showCart) {
       document.body.classList.add('disable_scroll');
@@ -34,8 +35,8 @@ export default function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/productPage/:id' element={<ProductPage />} />
         <Route path='/wishlistPage/:id' element={<WishListPage />} />
-        <Route path='/categoryProduct/:id/:pageNumber' element={<CategoryProduct />} />
-        <Route path='/categoryProduct/:id/' element={<CategoryProduct />} />
+        <Route path={`/categoryProduct/:pageNumber`} element={<CategoryProduct />} />
+        {/* <Route path={"/categoryProduct"} element={<CategoryProduct />} /> */}
       </Routes>
     </>
   )

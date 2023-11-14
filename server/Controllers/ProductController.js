@@ -1,48 +1,60 @@
 import ProductModel from "../Models/ProductModel.js";
 
 const createProduct = async (req, res) => {
-    try {
-        const newProduct = new ProductModel(req.body);
-        const savedProduct = await newProduct.save();
-        res.json(savedProduct);
-    } catch (error) {
-        res.json(error);
-    }
+  try {
+    const newProduct = new ProductModel(req.body);
+    const savedProduct = await newProduct.save();
+    res.json(savedProduct);
+  } catch (error) {
+    res.json(error);
+  }
 }
 
 const updateProduct = async (req, res) => {
-    const productId = req.params.id;
-    try {
-        const product = await ProductModel.findById(productId);
-        await product.updateOne({ $set: req.body });
-        res.status(200).json("Product Updated");
-    } catch (error) {
-        res.status(500).json(error);
-    }
+  const productId = req.params.id;
+  try {
+    const product = await ProductModel.findById(productId);
+    await product.updateOne({ $set: req.body });
+    res.status(200).json("Product Updated");
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 const getProduct = async (req, res) => {
-    const productId = req.params.id;
-    try {
-        const product = await ProductModel.findById(productId);
-        res.status(200).json(product);
-    }
-    catch (error) {
-        res.status(500).json(error);
-    }
+  const productId = req.params.id;
+  try {
+    const product = await ProductModel.findById(productId);
+    res.status(200).json(product);
+  }
+  catch (error) {
+    res.status(500).json(error);
+  }
 }
 
 const deleteProduct = async (req, res) => {
-    const productId = req.params.id;
-    try {
-        const product = await ProductModel.findById(productId);
-        await product.deleteOne();
-        res.status(200).json("Product Deleted");
-    }
-    catch (error) {
-        res.status(500).json(error);
-    }
+  const productId = req.params.id;
+  try {
+    const product = await ProductModel.findById(productId);
+    await product.deleteOne();
+    res.status(200).json("Product Deleted");
+  }
+  catch (error) {
+    res.status(500).json(error);
+  }
 }
+
+// Best Selling Products
+const getBestSellingProducts = async (req, res) => {
+  try {
+    const bestSellingProducts = await ProductModel.find({ BestSelling: true });
+
+    res.json(bestSellingProducts);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
+  }
+};
+
 
 // Pagination
 const getProducts = async (req, res) => {
@@ -113,4 +125,4 @@ const getProducts = async (req, res) => {
 
 
 
-export { createProduct, updateProduct, deleteProduct, getProduct, getProducts };
+export { createProduct, updateProduct, deleteProduct, getProduct, getProducts, getBestSellingProducts};

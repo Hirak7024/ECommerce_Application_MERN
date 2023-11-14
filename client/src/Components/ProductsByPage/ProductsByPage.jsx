@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
 import axios from "axios";
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import "./ProductsByPage.scss";
+import { Context } from '../../Utils/Context';
 
 const ProductsByPage = ({
     selectedCategory,
     minPrice,
     maxPrice }) => {
+
+    // const { pageNumber, setPageNumber } = useContext(Context);
+    const {pageNumber} = useParams();
     //For Pagination
-    const { pageNumber } = useParams();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -26,7 +29,7 @@ const ProductsByPage = ({
         const fetchPosts = async () => {
             setLoading(true);
             try {
-                const res = await axios.get(`/api/products/getProducts?page=${page}&category=${selectedCategory === "all" ?"" : selectedCategory}`)
+                const res = await axios.get(`/api/products/getProducts?page=${page}&category=${selectedCategory === "all" ? "" : selectedCategory}&minPrice=${minPrice}&maxPrice=${maxPrice}`)
 
                 setPages(res.data.pages);
                 setPosts(res.data.data);
@@ -43,6 +46,7 @@ const ProductsByPage = ({
     //   console.log(selectedCategory);
     //   console.log("MinPrice : ", minPrice);
     //   console.log("MaxPrice : ", maxPrice);
+    console.log(posts)
 
     return (
         <div className="app_container">
@@ -55,11 +59,15 @@ const ProductsByPage = ({
                     <>
                         <div className="paginated_products">
                             <div className="app_products">
-                                {posts.map((post) => (
-                                    <Link to={`/productPage/${post._id}`} className='card_To_Product_Link'>
+                                {posts.length !== 0 ? posts.map((post) => (
+                                    <Link to={`/productPage/${post._id}`} key={post._id} className='card_To_Product_Link'>
                                         <Card key={post._id} post={post} />
-                                        </Link>
-                                ))}
+                                    </Link>
+                                )) :
+                                    <>
+                                        <h1 className="no_prouct">No Products Found !!!</h1>
+                                    </>
+                                }
                             </div>
                             <Pagination page={page} pages={pages} changePage={setPage} />
                         </div>

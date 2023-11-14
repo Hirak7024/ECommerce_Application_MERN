@@ -55,4 +55,22 @@ const LoginUser = async (req, res) => {
     }
 };
 
-export { RegisterUser, LoginUser };
+//Add Products to WishList
+const addProductsToWishlist = async (req, res) => {
+    const { productId, userId } = req.body;
+    try {
+        const User = await UserModel.findById(userId);
+        //if the user has already liked that product, then it will be unliked on liking that post again
+        if (User.WishListedProducts.includes(productId)) {
+            await User.updateOne({ $pull: { WishListedProducts: productId } });
+            res.status(200).json({ message: "Product Removed from Wishlist" });
+        } else {
+            await User.updateOne({ $push: { WishListedProducts: productId } });
+            res.status(200).json({ message: "Product Added To Wishlist" });
+        }
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+export { RegisterUser, LoginUser, addProductsToWishlist };

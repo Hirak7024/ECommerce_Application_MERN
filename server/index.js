@@ -2,7 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import ProductRoute from "./Routes/ProductRoute.js"
+import ProductRoute from "./Routes/ProductRoute.js";
+import UserRoute from "./Routes/User.js";
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -18,5 +19,6 @@ mongoose.connect(process.env.MONGO_CONNECTION_URL, {useNewUrlParser: true, useUn
 mongoose.connection.on("disconnected",()=>console.log("MongoDB Disconnected"));
 
 app.use("/api/products", ProductRoute);
+app.use("/api/users", UserRoute);
 
 app.listen(PORT, ()=>console.log(`Server Running at PORT ${PORT}`));

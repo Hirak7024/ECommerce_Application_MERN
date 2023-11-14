@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Categories from '../../Components/Categories/Categories';
 import Banner from '../../Components/Banner/Banner';
 import BestSelling from '../../Components/BestSelling/BestSelling';
+import { useLocation } from 'react-router-dom';
 import "./home.scss";
 
 export default function Home() {
-    
     return (
         <div className='HomePage_Container'>
             <Banner/>

@@ -20,7 +20,15 @@ const ProductSchema = new mongoose.Schema({
     Image: {
         type: String,
         required: true
-    }
+    },
+    Brand: {
+        type: String,
+        required: true
+    },
+    BestSelling: {
+        type: Boolean,
+        required: true
+    },
 },
     { timeStamps: true }
 )
