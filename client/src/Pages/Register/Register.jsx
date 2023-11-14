@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { Context } from '../../Utils/Context';
+import axios from "axios";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../Login/Login.scss";
 
 export default function Register() {
+  const { userData, setUserData } = useContext(Context);
   const [formData, setFormData] = useState({
     Name: "",
     Email: "",
@@ -38,16 +43,17 @@ export default function Register() {
     if (formData.Name.length < 3) {
       newErrors.Name = "*Name must have atleast 3 characters";
       isValid = false;
-    }else if( !/^[a-zA-Z]+$/.test(formData.Name)) {
-      newErrors.Name = "*Name must contain only alphabets";
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.Name)) {
+      newErrors.Name = "*Name must contain only alphabets and spaces";
       isValid = false;
     }
+    
 
     // Email validation
     if (formData.Email.length === 0) {
       newErrors.Email = "*Email field can't be empty";
       isValid = false;
-    }else if (!formData.Email.match(/^.+@gmail\.com$/)) {
+    } else if (!formData.Email.match(/^.+@gmail\.com$/)) {
       newErrors.Email = "*Enter a valid gmail address";
       isValid = false;
     }
@@ -62,18 +68,33 @@ export default function Register() {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const registerUser = async () => {
+    try {
+      const response = await axios.post("/api/users/register", formData);
+      const { user, token } = response.data.data;
+      const message = response.data.message;
+      setUserData({ user, token });
+      localStorage.setItem("authToken", token);
+      // if(response.data.status_code === 200){
+        toast.success(message);
+        navigate("/");
+      // }
+    } catch (error) {  //for error code above 400 it goes to catch block
+      toast.error(error.response.data.message)
+      console.error("Registration failed", error);
+    }
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (validateForm()) {
-      // Form is valid, submit the form and navigate
-      navigate("/");
+      await registerUser();
     }
   };
 
   return (
     <div className='login_Container'>
-      <h1 className="close_mark_btn" onClick={()=>navigate("/")}>X</h1>
+      <h1 className="close_mark_btn" onClick={() => navigate("/")}>X</h1>
       <form className='login_form' onSubmit={handleSubmit}>
         <h1 className="formHeading">Register</h1>
         <div className="labelInput">

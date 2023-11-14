@@ -10,7 +10,7 @@ const AppContext = ({ children }) => {
    const [productLiked, setProductLiked] = useState(false);
    const [addedToCart, setAddedToCart] = useState(false);
    const [selectedCategory, setSelectedCategory] = useState("all");
-//    const [pageNumber, setPageNumber] = useState(1);
+   const [userData, setUserData] = useState({});
    const location = useLocation();
 
     useEffect(() => {
@@ -30,8 +30,8 @@ const AppContext = ({ children }) => {
             setAddedToCart,
             selectedCategory, 
             setSelectedCategory,
-            // pageNumber, 
-            // setPageNumber
+            userData, 
+            setUserData
         }}>
             {children}
         </Context.Provider>

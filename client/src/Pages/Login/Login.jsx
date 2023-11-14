@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { Context } from '../../Utils/Context';
+import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../Login/Login.scss";
 
 export default function Register() {
+  const { userData, setUserData } = useContext(Context);
   const [formData, setFormData] = useState({
     Email: "",
     Password: ""
@@ -35,7 +40,7 @@ export default function Register() {
     if (formData.Email.length === 0) {
       newErrors.Email = "*Email field can't be empty";
       isValid = false;
-    }else if (!formData.Email.match(/^.+@gmail\.com$/)) {
+    } else if (!formData.Email.match(/^.+@gmail\.com$/)) {
       newErrors.Email = "*Enter a valid gmail address";
       isValid = false;
     }
@@ -50,18 +55,31 @@ export default function Register() {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (validateForm()) {
-      // Form is valid, submit the form and navigate
+  const loginUser = async () => {
+    try {
+      const response = await axios.post("/api/users/login", formData);
+      const { user, token } = response.data.data;
+      const message = response.data.message;
+      setUserData({ user, token })
+      localStorage.setItem("authToken", token);
+      toast.success(message);
       navigate("/");
+    } catch (error) {
+      console.error("Registration failed", error);
+      toast.error(error.response.data.message);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      await loginUser();
     }
   };
 
   return (
     <div className='login_Container'>
-      <h1 className="close_mark_btn" onClick={()=>navigate("/")} >X</h1>
+      <h1 className="close_mark_btn" onClick={() => navigate("/")} >X</h1>
       <form className='login_form' onSubmit={handleSubmit}>
         <h1 className="formHeading">Login</h1>
         <div className="labelInput">

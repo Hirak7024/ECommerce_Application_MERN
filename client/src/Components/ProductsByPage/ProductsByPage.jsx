@@ -43,11 +43,6 @@ const ProductsByPage = ({
         fetchPosts();
     }, [page, minPrice, maxPrice, selectedCategory])
 
-    //   console.log(selectedCategory);
-    //   console.log("MinPrice : ", minPrice);
-    //   console.log("MaxPrice : ", maxPrice);
-    console.log(posts)
-
     return (
         <div className="app_container">
             <div className="productCards_Container">
