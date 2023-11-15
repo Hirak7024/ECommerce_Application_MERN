@@ -1,4 +1,5 @@
 import UserModel from "../Models/User.js";
+import ProductModel from "../Models/ProductModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -18,7 +19,7 @@ const RegisterUser = async (req, res) => {
 
         const token = jwt.sign({
             Name: user.Name, Email: user.Email, id: user._id
-        }, process.env.JWT_KEY, { expiresIn: "1h" })
+        }, process.env.JWT_KEY, { expiresIn: 60*60*24 })
 
         const userResponse = {
             _id: user._id,
@@ -47,16 +48,16 @@ const LoginUser = async (req, res) => {
             }
             else {
                 const token = jwt.sign({
-                    Name: user.Name, Email: user.Email, id: user._id
-                }, process.env.JWT_KEY, { expiresIn: "1h" })
+                    Name: user.Name, Email: user.Email, _id: user._id
+                }, process.env.JWT_KEY, { expiresIn: 60*60*24 })
                 const userResponse = {
                     _id: user._id,
                     Name: user.Name,
                     Email: user.Email,
-                    WishListedProducts: user.WishListedProducts,
+                    // WishListedProducts: user.WishListedProducts,
                 }
 
-                res.status(200).json({ data: { userResponse, token }, message: "Log In Successful", status_code: 200 })
+                res.status(200).json({ data: { userResponse, token }, message: "Login Successful", status_code: 200 })
             }
         }
         else {
@@ -68,12 +69,36 @@ const LoginUser = async (req, res) => {
     }
 };
 
+//Get Decoded token
+const getPayloadFromToken = (req, res) => {
+    const token = req.headers.authorization;
+  
+    if (!token) {
+      return res.status(401).json({ message: 'Unauthorized - No token provided' });
+    }
+  
+    const tokenParts = token.split(" ");
+  
+    if (tokenParts.length !== 2 || tokenParts[0].toLowerCase() !== 'bearer') {
+      return res.status(401).json({ message: 'Unauthorized - Invalid token format' });
+    }
+  
+    const jwtToken = tokenParts[1];
+  
+    try {
+      const decodedPayload = jwt.verify(jwtToken, process.env.JWT_KEY);
+      res.json({ payload: decodedPayload });
+    } catch (error) {
+      res.status(401).json({ message: 'Unauthorized - Invalid token' });
+    }
+  };
+  
+
 //Add Products to WishList
 const addProductsToWishlist = async (req, res) => {
     const { productId, userId } = req.body;
     try {
         const User = await UserModel.findById(userId);
-        //if the user has already liked that product, then it will be unliked on liking that post again
         if (User.WishListedProducts.includes(productId)) {
             await User.updateOne({ $pull: { WishListedProducts: productId } });
             res.status(200).json({ message: "Product Removed from Wishlist" });
@@ -86,4 +111,83 @@ const addProductsToWishlist = async (req, res) => {
     }
 };
 
-export { RegisterUser, LoginUser, addProductsToWishlist };
+//Get WishListedProducts 
+const getWishlistedProducts = async (req, res) => {
+    try {
+        const { userId } = req.body;
+
+        // Find the user by ID
+        const user = await UserModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Extract the wishlisted product IDs
+        const wishlistedProductIds = user.WishListedProducts;
+
+        // Find the details of wishlisted products
+        const wishlistedProducts = await ProductModel.find({ _id: { $in: wishlistedProductIds } });
+
+        res.status(200).json({ wishlistedProducts });
+    } catch (error) {
+        console.error('Error fetching wishlisted product details:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+//Add Products To Cart
+const addProductsToCart = async (req, res) => {
+    const { productId, userId } = req.body;
+    try {
+        const User = await UserModel.findById(userId);
+        await User.updateOne({ $push: { CartProducts: productId } });
+        res.status(200).json({ message: "Product Added To Cart" });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+//Remove Product from Cart
+const removeProductsFromCart = async (req, res) => {
+    const { productId, userId } = req.body;
+    try {
+        const User = await UserModel.findById(userId);
+        await User.updateOne({ $pull: { CartProducts: productId } });
+        res.status(200).json({ message: "Product Removed from Cart" });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+//Get Cart Products
+const getCartProducts = async (req, res) => {
+    try {
+        const { userId } = req.body;
+
+        const user = await UserModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const cartProductIds = user.CartProducts;
+
+        const cartProducts = await ProductModel.find({ _id: { $in: cartProductIds } });
+
+        res.status(200).json({ cartProducts });
+    } catch (error) {
+        console.error('Error fetching cart product details:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+export {
+    RegisterUser,
+    LoginUser,
+    addProductsToWishlist,
+    getWishlistedProducts,
+    addProductsToCart,
+    removeProductsFromCart,
+    getCartProducts,
+    getPayloadFromToken
+};

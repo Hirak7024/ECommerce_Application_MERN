@@ -4,14 +4,25 @@
     align-items: center;
     gap: 3rem;
     padding: 5vh 10vw;
-    h1{
+    .wishListedProductsHeading{
         font-size: 40px;
+    }
+    .loading_text{
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .error_text{
+        font-size: 20px;
+        font-weight: 700;
     }
     .wishListedProducts_Container{
         display: flex;
         flex-wrap: wrap;
         gap: 3rem;
         justify-content: center;
+        .noProducts_head{
+            font-size: 20px;
+        }
         .card_To_Product_Link{
             color: black;
             text-decoration: none;

@@ -15,6 +15,7 @@ const UserSchema = mongoose.Schema(
       required: true,
     },
     WishListedProducts:[],
+    CartProducts:[],
   },
   { timestamps: true } 
 );

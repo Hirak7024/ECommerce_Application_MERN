@@ -3,12 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Context } from '../../Utils/Context';
 import axios from "axios";
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "../Login/Login.scss";
 
 export default function Register() {
-  const { userData, setUserData } = useContext(Context);
+  const { userData, setUserData, isLoggedIn, setIsLoggedIn } = useContext(Context);
   const [formData, setFormData] = useState({
     Name: "",
     Email: "",
@@ -47,7 +47,7 @@ export default function Register() {
       newErrors.Name = "*Name must contain only alphabets and spaces";
       isValid = false;
     }
-    
+
 
     // Email validation
     if (formData.Email.length === 0) {
@@ -76,8 +76,9 @@ export default function Register() {
       setUserData({ user, token });
       localStorage.setItem("authToken", token);
       // if(response.data.status_code === 200){
-        toast.success(message);
-        navigate("/");
+      toast.success(message);
+      setIsLoggedIn(true);
+      navigate("/");
       // }
     } catch (error) {  //for error code above 400 it goes to catch block
       toast.error(error.response.data.message)

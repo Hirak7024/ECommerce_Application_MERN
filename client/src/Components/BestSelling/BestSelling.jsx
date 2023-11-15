@@ -8,11 +8,12 @@ export default function BestSelling() {
     const [bestSellingProducts, setBestSellingProducts] = useState();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    
     useEffect(() => {
         const fetchBestSellingProducts = async (req, res) => {
             setLoading(true);
             try {
-                const response = await axios.get("api/products/products/bestSelling")
+                const response = await axios.get("/api/products/products/bestSelling")
 
                 setBestSellingProducts(response.data);
                 setLoading(false);

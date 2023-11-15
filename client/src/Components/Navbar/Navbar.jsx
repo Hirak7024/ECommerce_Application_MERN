@@ -1,17 +1,17 @@
-import React, { useContext, useState,useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AiOutlineSearch, AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { Context } from '../../Utils/Context';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./navbar.scss";
 
 export default function Navbar() {
-    const [isLogged, setIsLogged] = useState(false);
+    const { isLoggedIn, setIsLoggedIn, setUserData,setShowCart } = useContext(Context);
+
     const [scrolled, setScrolled] = useState(false);
-    const handleClick = () => {
-        setIsLogged(!isLogged);
-    }
-    const { setShowCart } = useContext(Context);
+
     const navigate = useNavigate();
 
     const handleScroll = () => {
@@ -23,14 +23,36 @@ export default function Navbar() {
         }
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem("authToken");
+        setIsLoggedIn(false);
+        setUserData({});
+        toast.success("Logged Out")
+    }
+
+    const openWishListPage=()=>{
+        if(!isLoggedIn){
+            toast.error("You need to login first");
+        }else{
+            navigate("/wishlistPage")
+        }
+    }
+    const openShoppingCart=()=>{
+        if(!isLoggedIn){
+            toast.error("You need to login first"); 
+        }else{
+            setShowCart(true);
+        }
+    }
+
     useEffect(() => {
         window.addEventListener("scroll", handleScroll)
     }, [])
     return (
         <>
-            <div className={ `navbar-container ${scrolled ? "sticky_navbar" : ""}`}>
+            <div className={`navbar-container ${scrolled ? "sticky_navbar" : ""}`}>
                 <div className="left">
-                    <h1 onClick={()=>navigate("/")}> E Store</h1>
+                    <h1 onClick={() => navigate("/")}> E Store</h1>
                 </div>
                 <div className="middle">
                     <div className="searchBox">
@@ -40,24 +62,20 @@ export default function Navbar() {
                 </div>
                 <div className="right">
                     <div className='icons'>
-                        <div className='icon' onClick={()=>navigate("/wishlistPage/3")} ><AiOutlineHeart size={30} /></div>
-                        <div className='icon' onClick={()=>setShowCart(true)}>
+                        <div className='icon' onClick={openWishListPage} ><AiOutlineHeart size={30} /></div>
+                        <div className='icon' onClick={openShoppingCart}>
                             <AiOutlineShoppingCart size={30} />
                             <p className='number'>3</p>
                         </div>
                     </div>
-                    {/* {!isLogged ?
-                        <button className="login" onClick={handleClick}>
+                    {!isLoggedIn ?
+                        <button className="login" onClick={() => navigate("/login")}>
                             <BsFillPersonFill size={22} />
                             <p>Login</p>
-                        </button> : <button className='login2' onClick={handleClick}>
+                        </button> : <button className='login2' onClick={handleLogout}>
                             Logout
                         </button>
-                    } */}
-                    <button className="login" onClick={()=>navigate("/login")}>
-                            <BsFillPersonFill size={22} />
-                            <p>Login</p>
-                        </button> 
+                    }
                 </div>
             </div>
         </>
