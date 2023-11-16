@@ -25,6 +25,7 @@ export default function Navbar() {
 
     const handleLogout = () => {
         localStorage.removeItem("authToken");
+        navigate("/");
         setIsLoggedIn(false);
         setUserData({});
         toast.success("Logged Out")

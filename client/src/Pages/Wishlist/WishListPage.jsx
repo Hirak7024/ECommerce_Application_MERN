@@ -12,26 +12,6 @@ export default function WishListPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const fetchWishListedProducts = async () => {
-    setLoading(true);
-    try {
-      const userID = userData.userResponse._id;
-      const response = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
-      setLoading(false);
-      setWishListedProducts(response.data.wishlistedProducts);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-      setError("Some Error Occured");
-    }
-  };
-
-  useEffect(() => {
-    fetchWishListedProducts();
-  }, []);
-
-  console.log(wishListedProducts);
-
   return (
     <div className='WishListPage_Container'>
       <h1 className='wishListedProductsHeading'>WishListed Products</h1>

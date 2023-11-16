@@ -17,9 +17,21 @@ const AppContext = ({ children }) => {
     const [wishListedProducts, setWishListedProducts] = useState([]);
     const location = useLocation();
 
+    // const fetchWishListedProducts = async () => {
+    //     try {
+    //       const userID = userData.userResponse._id;
+    //       const response = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
+    //       setWishListedProducts(response.data.wishlistedProducts);
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   };
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location]);
+
+   
 
 
 
@@ -41,6 +53,7 @@ const AppContext = ({ children }) => {
             setIsLoggedIn,
             wishListedProducts, 
             setWishListedProducts,
+            // fetchWishListedProducts,
         }}>
             {children}
         </Context.Provider>

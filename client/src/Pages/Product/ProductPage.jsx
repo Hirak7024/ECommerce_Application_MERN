@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./ProductPage.scss";
 
 export default function ProductPage() {
-  const { addedToCart, setAddedToCart, userData, isLoggedIn, wishListedProducts } = useContext(Context);
+  const { addedToCart, setAddedToCart, userData, isLoggedIn, wishListedProducts, setWishListedProducts } = useContext(Context);
   const [singleProduct, setSingleProduct] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -47,7 +47,7 @@ export default function ProductPage() {
         '/api/users/addProducts/toWishlist',
         {
           productId: singleProduct._id,
-          userId: userData.userResponse.id || userData.userResponse._id
+          userId: userData.userResponse._id
         },
         {
           headers: {
@@ -58,6 +58,11 @@ export default function ProductPage() {
 
       // Toggle the productLiked state
       setProductLiked(prevProductLiked => !prevProductLiked);
+
+      //Call to fetch wishListed data is made here again to update the wishLishListedProducts in Context 
+      const userID = userData.userResponse._id;
+      const response2 = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
+      setWishListedProducts(response2.data.wishlistedProducts);
 
       toast.success(response.data.message);
     } catch (error) {
@@ -71,7 +76,7 @@ export default function ProductPage() {
     if (!isLoggedIn) {
       toast.error("You need to login first");
     } else {
-      if(productLiked===false){
+      if (productLiked === false) {
         await addProductToWishList();
       }
     }

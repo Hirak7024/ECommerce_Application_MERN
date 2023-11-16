@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "../Login/Login.scss";
 
 export default function Register() {
-  const { userData, setUserData, isLoggedIn, setIsLoggedIn } = useContext(Context);
+  const { userData, setUserData, isLoggedIn, setIsLoggedIn, setWishListedProducts } = useContext(Context);
   const [formData, setFormData] = useState({
     Email: "",
     Password: ""
@@ -59,6 +59,11 @@ export default function Register() {
     try {
       const response = await axios.post("/api/users/login", formData);
       const { userResponse, token } = response.data.data;
+      // console.log(response.data.data);
+
+      const userID = response.data.data.userResponse._id;
+      const response2 = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
+      setWishListedProducts(response2.data.wishlistedProducts);
       const message = response.data.message;
       setUserData({ userResponse, token })
       localStorage.setItem("authToken", token);

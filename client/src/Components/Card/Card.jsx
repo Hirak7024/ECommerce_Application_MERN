@@ -7,7 +7,7 @@ import axios from "axios";
 import "./Card.scss";
 
 export default function Card({ post }) {
-    const { isLoggedIn, userData, wishListedProducts } = useContext(Context);
+    const { isLoggedIn, userData, wishListedProducts, setWishListedProducts } = useContext(Context);
     const [productLiked, setProductLiked] = useState(false);
     const productId = post._id;
 
@@ -23,7 +23,7 @@ export default function Card({ post }) {
                 '/api/users/addProducts/toWishlist',
                 {
                     productId: post._id,
-                    userId: userData.userResponse.id || userData.userResponse._id
+                    userId: userData.userResponse._id
                 },
                 {
                     headers: {
@@ -34,6 +34,12 @@ export default function Card({ post }) {
 
             // Toggle the productLiked state
             setProductLiked(prevProductLiked => !prevProductLiked);
+
+            //Call to fetch wishListed data is made here again to update the wishLishListedProducts in Context 
+            const userID = userData.userResponse._id;
+            const response2 = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
+            setWishListedProducts(response2.data.wishlistedProducts);
+
 
             toast.success(response.data.message);
         } catch (error) {
