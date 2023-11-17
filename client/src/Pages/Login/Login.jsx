@@ -62,7 +62,7 @@ export default function Register() {
       // console.log(response.data.data);
 
       const userID = response.data.data.userResponse._id;
-      const response2 = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
+      const response2 = await axios.post("/api/products/getProducts/wishlisted", { userId: userID });
       setWishListedProducts(response2.data.wishlistedProducts);
       const message = response.data.message;
       setUserData({ userResponse, token })

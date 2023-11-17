@@ -8,7 +8,7 @@ import "./WishListPage.scss";
 export default function WishListPage() {
   const { userData } = useContext(Context);
   // const [wishListedProducts, setWishListedProducts] = useState([]);
-  const {wishListedProducts, setWishListedProducts} = useContext(Context);
+  const { wishListedProducts, setWishListedProducts } = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 

@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./navbar.scss";
 
 export default function Navbar() {
-    const { isLoggedIn, setIsLoggedIn, setUserData,setShowCart } = useContext(Context);
+    const { isLoggedIn, setIsLoggedIn, setUserData, setShowCart, cart, setCart, setWishListedProducts } = useContext(Context);
 
     const [scrolled, setScrolled] = useState(false);
 
@@ -26,22 +26,23 @@ export default function Navbar() {
     const handleLogout = () => {
         localStorage.removeItem("authToken");
         navigate("/");
+        setWishListedProducts([])
         setIsLoggedIn(false);
         setUserData({});
         toast.success("Logged Out")
     }
 
-    const openWishListPage=()=>{
-        if(!isLoggedIn){
+    const openWishListPage = () => {
+        if (!isLoggedIn) {
             toast.error("You need to login first");
-        }else{
+        } else {
             navigate("/wishlistPage")
         }
     }
-    const openShoppingCart=()=>{
-        if(!isLoggedIn){
-            toast.error("You need to login first"); 
-        }else{
+    const openShoppingCart = () => {
+        if (!isLoggedIn) {
+            toast.error("You need to login first");
+        } else {
             setShowCart(true);
         }
     }
@@ -66,7 +67,7 @@ export default function Navbar() {
                         <div className='icon' onClick={openWishListPage} ><AiOutlineHeart size={30} /></div>
                         <div className='icon' onClick={openShoppingCart}>
                             <AiOutlineShoppingCart size={30} />
-                            <p className='number'>3</p>
+                            {cart.length !== 0 && <p className='number'>{cart.length}</p>}
                         </div>
                     </div>
                     {!isLoggedIn ?

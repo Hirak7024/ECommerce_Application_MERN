@@ -1,4 +1,5 @@
 import ProductModel from "../Models/ProductModel.js";
+import UserModel from "../Models/User.js";
 
 const createProduct = async (req, res) => {
   try {
@@ -52,6 +53,62 @@ const getBestSellingProducts = async (req, res) => {
     res.json(bestSellingProducts);
   } catch (error) {
     res.status(500).json({ message: 'Internal Server Error', error: error.message });
+  }
+};
+
+//Add Products to WishList
+const addProductsToWishlist = async (req, res) => {
+  const { productId, userId } = req.body;
+  try {
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    } else {
+      let updatedWishlist;
+
+      if (user.WishListedProducts.includes(productId)) {
+        await UserModel.updateOne({ _id: userId }, { $pull: { WishListedProducts: productId } });
+        updatedWishlist = user.WishListedProducts.filter((id) => id.toString() !== productId);
+      } else {
+        await UserModel.updateOne({ _id: userId }, { $push: { WishListedProducts: productId } });
+        updatedWishlist = [...user.WishListedProducts, productId];
+      }
+
+      // Fetch details of wishlisted products
+      const wishlistedProducts = await ProductModel.find({ _id: { $in: updatedWishlist } });
+
+      res.status(200).json({ message: 'Operation successful', wishlistedProducts });
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+
+
+//Get WishListedProducts 
+const getWishlistedProducts = async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    // Find the user by ID
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Extract the wishlisted product IDs
+    const wishlistedProductIds = user.WishListedProducts;
+
+    // Find the details of wishlisted products
+    const wishlistedProducts = await ProductModel.find({ _id: { $in: wishlistedProductIds } });
+
+    res.status(200).json({ wishlistedProducts });
+  } catch (error) {
+    console.error('Error fetching wishlisted product details:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 
@@ -125,4 +182,7 @@ const getProducts = async (req, res) => {
 
 
 
-export { createProduct, updateProduct, deleteProduct, getProduct, getProducts, getBestSellingProducts};
+export {
+  createProduct, updateProduct, deleteProduct, getProduct, getProducts, getBestSellingProducts, addProductsToWishlist,
+  getWishlistedProducts,
+};

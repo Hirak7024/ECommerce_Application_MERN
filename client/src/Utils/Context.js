@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 export const Context = createContext();
@@ -15,25 +15,16 @@ const AppContext = ({ children }) => {
     const [userData, setUserData] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [wishListedProducts, setWishListedProducts] = useState([]);
+    const [cartItems, setCartItems] = useState({
+        product: null,
+        productQuantity: null
+    });
+    const [cart, setCart] = useState([]);
     const location = useLocation();
-
-    // const fetchWishListedProducts = async () => {
-    //     try {
-    //       const userID = userData.userResponse._id;
-    //       const response = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
-    //       setWishListedProducts(response.data.wishlistedProducts);
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   };
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location]);
-
-   
-
-
 
     return (
         <Context.Provider value={{
@@ -51,9 +42,12 @@ const AppContext = ({ children }) => {
             setUserData,
             isLoggedIn,
             setIsLoggedIn,
-            wishListedProducts, 
+            wishListedProducts,
             setWishListedProducts,
-            // fetchWishListedProducts,
+            cartItems,
+            setCartItems,
+            cart, 
+            setCart,
         }}>
             {children}
         </Context.Provider>

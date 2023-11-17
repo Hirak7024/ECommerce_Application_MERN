@@ -20,7 +20,7 @@ export default function Card({ post }) {
     const addProductToWishList = async () => {
         try {
             const response = await axios.post(
-                '/api/users/addProducts/toWishlist',
+                '/api/products/addProducts/toWishlist',
                 {
                     productId: post._id,
                     userId: userData.userResponse._id
@@ -34,14 +34,17 @@ export default function Card({ post }) {
 
             // Toggle the productLiked state
             setProductLiked(prevProductLiked => !prevProductLiked);
+            setWishListedProducts(response.data.wishlistedProducts);
+
+            console.log("From Card:",response.data)
 
             //Call to fetch wishListed data is made here again to update the wishLishListedProducts in Context 
-            const userID = userData.userResponse._id;
-            const response2 = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
-            setWishListedProducts(response2.data.wishlistedProducts);
+            // const userID = userData.userResponse._id;
+            // const response2 = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
+            // setWishListedProducts(response2.data.wishlistedProducts);
 
 
-            toast.success(response.data.message);
+            // toast.success(response.data.message);
         } catch (error) {
             console.log(error);
             toast.error('Error adding product to wishlist');

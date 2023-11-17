@@ -30,7 +30,7 @@ export default function App() {
 
         //fetching the wishlisted products here only so that everytime the page reloads, it can directly get the userId from the response of decodedToken.
         const userID = response.data.payload._id;
-        const response2 = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
+        const response2 = await axios.post("/api/products/getProducts/wishlisted", { userId: userID });
         setWishListedProducts(response2.data.wishlistedProducts);
 
         // Check if the token is still valid

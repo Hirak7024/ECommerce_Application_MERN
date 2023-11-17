@@ -9,12 +9,23 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./ProductPage.scss";
 
 export default function ProductPage() {
-  const { addedToCart, setAddedToCart, userData, isLoggedIn, wishListedProducts, setWishListedProducts } = useContext(Context);
+  const { userData, isLoggedIn, wishListedProducts, setWishListedProducts, cartItems, setCartItems, cart, setCart } = useContext(Context);
   const [singleProduct, setSingleProduct] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { id } = useParams();
   const [productLiked, setProductLiked] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+  const decrement = () => {
+    setQuantity((prevState) => {
+      if (prevState === 1) return 1;
+      return prevState - 1;
+    });
+  };
+  const increment = () => {
+    setQuantity((prevState) => prevState + 1);
+  };
 
   useEffect(() => {
 
@@ -44,7 +55,7 @@ export default function ProductPage() {
   const addProductToWishList = async () => {
     try {
       const response = await axios.post(
-        '/api/users/addProducts/toWishlist',
+        '/api/products/addProducts/toWishlist',
         {
           productId: singleProduct._id,
           userId: userData.userResponse._id
@@ -58,13 +69,7 @@ export default function ProductPage() {
 
       // Toggle the productLiked state
       setProductLiked(prevProductLiked => !prevProductLiked);
-
-      //Call to fetch wishListed data is made here again to update the wishLishListedProducts in Context 
-      const userID = userData.userResponse._id;
-      const response2 = await axios.post("/api/users/getProducts/wishlisted", { userId: userID });
-      setWishListedProducts(response2.data.wishlistedProducts);
-
-      toast.success(response.data.message);
+      setWishListedProducts(response.data.wishlistedProducts);
     } catch (error) {
       console.log(error);
       toast.error('Error adding product to wishlist');
@@ -81,9 +86,40 @@ export default function ProductPage() {
       }
     }
   }
+
+
   const toggleAddToCart = () => {
-    setAddedToCart(!addedToCart);
-  }
+    if (!isLoggedIn) {
+      toast.error('You need to login first');
+    } else {
+      const existingCartItemIndex = cart.findIndex((item) => item.product._id === singleProduct._id);
+
+      if (existingCartItemIndex !== -1) {
+        // If the product is already in the cart, update its quantity
+        const updatedCart = [...cart];
+        updatedCart[existingCartItemIndex].productQuantity += quantity;
+        setCart(updatedCart);
+      } else {
+        // If the product is not in the cart, add it
+        const newCartItem = {
+          product: singleProduct,
+          productQuantity: quantity,
+        };
+        setCart((prevCart) => [...prevCart, newCartItem]);
+      }
+
+      // Update the global cartItems state
+      setCartItems({
+        product: singleProduct,
+        productQuantity: quantity,
+      });
+
+      // Optionally, you can show a toast or perform any other action
+      toast.success('Product added to cart');
+    }
+  };
+
+  console.log('From Product Page:', singleProduct);
 
   return (
     <div className='ProductPageContainer'>
@@ -99,19 +135,19 @@ export default function ProductPage() {
                 <p className="productDesc">{singleProduct.Description}</p>
                 <p className="productPrice">&#8377; {singleProduct.Price}</p>
                 <div className="quantity_container">
-                  <button className="quantity_btn">-</button>
-                  <p className="quantity">1</p>
-                  <button className="quantity_btn">+</button>
+                  <button className="quantity_btn" onClick={decrement}>-</button>
+                  <p className="quantity">{quantity}</p>
+                  <button className="quantity_btn" onClick={increment}>+</button>
                 </div>
                 <div className="btn_container">
                   <button className="addToCart" onClick={toggleAddToCart}>
-                    {addedToCart ? <>
-                      <BsFillCartCheckFill className='icon' /> Product Added
-                    </> : <>
-                      <BsFillCartPlusFill className='icon' />
-                      Add to Cart
-                    </>
-                    }
+                    {/* {addedToCart ? <> */}
+                    {/* <BsFillCartCheckFill className='icon' /> Product Added */}
+                    {/* </> : <> */}
+                    <BsFillCartPlusFill className='icon' />
+                    Add to Cart
+                    {/* </> */}
+                    {/* } */}
                   </button>
                   <button className="wishlist" onClick={toggleLike}>
                     {productLiked ? <>
