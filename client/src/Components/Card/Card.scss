@@ -1,3 +1,4 @@
+@import "../../css-config/mixins.scss";
 
 .card_container{
     display: flex;
@@ -11,6 +12,12 @@
     transition-property: all;
     transition-duration: 0.3s;
     background-color: white;
+    @include lg{
+      width: 16rem;
+    }
+    @include md{
+      width: 14rem;
+  }
     cursor: pointer;
     .like_icon{
         width: 2rem;
@@ -20,6 +27,10 @@
         right: 1rem;
         transition-property: all;
         transition-duration: 0.3s;
+        @include lg{
+          width: 1.8rem;
+          height: 1.8rem;
+        }
     }
     .like_icon:hover{
         transform: scale(1.2);
@@ -31,6 +42,9 @@
     .productImg_Container{
       width: 100%;
       height: 14rem;
+      @include lg{
+        height: 13rem;
+      }
       .product_img{
         width: 100%;
         height: 100%;
@@ -44,6 +58,9 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      @include lg{
+        font-size: 20px;
+      }
     }
     .product_desc{
       font-size: 14px;
@@ -52,10 +69,16 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      @include lg{
+        font-size: 12px;
+      }
     }
     .product_price{
       font-size: 18px;
       font-weight: 500;
+      @include lg{
+        font-size: 16px;
+      }
     }
   }
   .card_container:hover{

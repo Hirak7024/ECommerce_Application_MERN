@@ -1,3 +1,5 @@
+@import "../../css-config/mixins.scss";
+
 .navbar-container {
     display: flex;
     align-items: center;
@@ -7,14 +9,19 @@
     justify-content: space-between;
     background-color: #092143;
     color: white;
-
+    @include lg{
+        padding: 0 2rem;
+        height: 80px;
+    }
     .left {
         flex: 1;
-
         h1 {
             font-size: 30px;
             font-weight: 500;
             cursor: pointer;
+            @include md{
+                font-size: 20px;
+            }
         }
     }
 
@@ -33,6 +40,12 @@
             border-radius: 5px;
             padding: 0 7px;
             justify-content: space-between;
+            @include lg{
+                height: 43px ;
+            }
+            @include md{
+                height: 40px ;
+            }
 
             input {
                 font-size: 18px;
@@ -40,6 +53,12 @@
                 outline: none;
                 border: none;
                 width: 100%;
+                @include lg{
+                    font-size: 16px;
+                }
+                @include md{
+                    font-size: 14px;
+                }
             }
 
             .searchIcon {
@@ -49,6 +68,14 @@
                 color: white;
                 border-radius: 6px;
                 background-color: #f5af35;
+                @include lg{
+                    width: 60px;
+                    height: 33px;
+                }
+                @include lg{
+                    width: 50px;
+                    height: 30px;
+                }
             }
 
             .searchIcon:hover {
@@ -65,14 +92,36 @@
         padding-right: 20px;
         flex: 2;
         gap: 10px;
+        @include lg{
+            padding-right: 0px;
+            gap: 2px;
+        }
 
         .icons {
             display: flex;
             gap: 15px;
             align-items: center;
+            @include lg{
+                gap: 7px;
+            }
+            @include md{
+                gap: 3px;
+            }
 
             .icon {
                 position: relative;
+                .right_icons{
+                    width: 2rem;
+                    height: 2rem;
+                    @include lg{
+                        width: 1.7rem;
+                        height: 1.7rem;
+                    }
+                    @include md{
+                        width: 1.5rem;
+                        height: 1.5rem;
+                    }
+                }
 
                 .number {
                     position: absolute;
@@ -87,6 +136,11 @@
                     align-items: center;
                     justify-content: center;
                     font-weight: 500;
+                    @include md{
+                        width: 15px;
+                        height: 15px;
+                        font-size: 9px;
+                    }
                 }
             }
 
@@ -109,10 +163,40 @@
             margin-left: 20px;
             cursor: pointer;
             border: none;
+            @include lg{
+                width: 80px;
+                height: 35px;
+                border-radius: 3px;
+                gap: 2px;
+            }
+            @include md{
+                width: 70px;
+                height: 33px;
+                border-radius: 2px;
+                gap: 2px;
+            }
+            .right_icons{
+                width: 1.5rem;
+                height: 1.5rem;
+                @include lg{
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+                @include md{
+                    width: 1.1rem;
+                    height: 1.1rem;
+                }
+            }
 
             p {
                 font-size: 16px;
                 font-weight: 700;
+                @include lg{
+                    font-size: 14px;
+                }
+                @include lg{
+                    font-size: 13px;
+                }
             }
         }
 
@@ -138,6 +222,19 @@
             font-size: 16px;
             font-weight: 700;
             border: none;
+            @include lg{
+                width: 70px;
+                height: 35px;
+                font-size: 14px;
+                margin-left: 0;
+                border-radius: 3px;
+            }
+            @include lg{
+                width: 70px;
+                height: 35px;
+                border-radius: 2px;
+                font-size: 13px;
+            }
         }
 
         .login2:hover {

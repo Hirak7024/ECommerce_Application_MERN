@@ -64,15 +64,15 @@ export default function Navbar() {
                 </div>
                 <div className="right">
                     <div className='icons'>
-                        <div className='icon' onClick={openWishListPage} ><AiOutlineHeart size={30} /></div>
+                        <div className='icon' onClick={openWishListPage} ><AiOutlineHeart className='right_icons' /></div>
                         <div className='icon' onClick={openShoppingCart}>
-                            <AiOutlineShoppingCart size={30} />
+                            <AiOutlineShoppingCart className='right_icons' />
                             {cart.length !== 0 && <p className='number'>{cart.length}</p>}
                         </div>
                     </div>
                     {!isLoggedIn ?
                         <button className="login" onClick={() => navigate("/login")}>
-                            <BsFillPersonFill size={22} />
+                            <BsFillPersonFill className='right_icons' />
                             <p>Login</p>
                         </button> : <button className='login2' onClick={handleLogout}>
                             Logout

@@ -1,3 +1,5 @@
+@import "../../css-config/mixins.scss";
+
 .categories-container {
     display: flex;
     flex-direction: column;
@@ -6,6 +8,12 @@
     h1 {
         margin: 0 auto;
         font-size: 45px;
+        @include lg{
+            font-size: 35px;
+        }
+        @include md{
+            font-size: 30px;
+        }
     }
 
     .img-container {
@@ -31,6 +39,12 @@
             p{
                 font-size: 20px;
                 font-weight: 700;
+                @include lg{
+                    font-size: 17px;
+                }
+                @include md{
+                    font-size: 15px;
+                }
             }
         }
         .img-container-items:hover{

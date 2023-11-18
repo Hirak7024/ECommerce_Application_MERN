@@ -1,3 +1,5 @@
+@import "../../css-config/mixins.scss";
+
 .shopping_cart {
     display: flex;
     width: 100vw;
@@ -21,6 +23,10 @@
         right: 0;
         background-color: white;
         z-index: 250;
+        @include lg{
+            width: 20rem;
+        }
+        
 
         .cartContainerHead {
             display: flex;
@@ -28,10 +34,16 @@
             justify-content: space-between;
             padding: 20px 25px;
             border-bottom: 1px solid rgb(197, 195, 195);
+            @include lg{
+                padding: 18px 23px;
+            }
 
             .header {
                 font-size: 25px;
                 font-weight: 600;
+                @include lg{
+                    font-size: 20px;
+                }
             }
 
             .close_btn {
@@ -41,6 +53,9 @@
                 background-color: white;
                 font-size: 20px;
                 margin-right: 10px;
+                @include lg{
+                    font-size: 17px;
+                }
             }
         }
 
@@ -65,6 +80,9 @@
                 .empty_cart_head {
                     font-size: 20px;
                     font-weight: 600;
+                    @include lg{
+                        font-size: 18px;
+                    }
                 }
 
                 .returnToShop {
@@ -77,6 +95,14 @@
                     font-weight: 500;
                     border-radius: 5px;
                     cursor: pointer;
+                    @include lg{
+                        font-size: 18px;
+                        padding: 13px 17px;
+                    }
+                    @include md{
+                        font-size: 17px;
+                        padding: 11px 15px;
+                    }
                 }
             }
         }
@@ -105,11 +131,17 @@
                 .subtotal {
                     font-size: 20px;
                     font-weight: 700;
+                    @include lg{
+                        font-size: 18px;
+                    }
                 }
 
                 .subtotal_price {
                     font-size: 20px;
                     font-weight: 600;
+                    @include lg{
+                        font-size: 18px;
+                    }
                 }
             }
 
@@ -126,6 +158,14 @@
                 color: white;
                 border: none;
                 outline: none;
+                @include lg{
+                    font-size: 16px;
+                    height: 3rem;
+                }
+                @include md{
+                    font-size: 14px;
+                    height: 2.7rem;
+                }
             }
         }
     }

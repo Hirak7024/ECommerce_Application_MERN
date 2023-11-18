@@ -1,3 +1,5 @@
+@import "../../css-config/mixins.scss";
+
 .pagination {
     padding-left: 1rem;
     margin-top: 1rem;
@@ -9,6 +11,10 @@
     margin-right: 0.5rem;
     cursor: pointer;
     padding: 7px 15px;
+    @include lg{
+      padding: 5px 13px;
+      font-size: 10px;
+    }
   }
   
   .pagination button:disabled {

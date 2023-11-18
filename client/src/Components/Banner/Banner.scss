@@ -1,3 +1,5 @@
+@import "../../css-config/mixins.scss";
+
 .Banner_Container {
     width: 100vw;
     height: 70vh;
@@ -7,6 +9,10 @@
     justify-content: space-between;
     padding-right: 30vw;
     padding-left: 12vw;
+    @include md{
+        padding-left: 10vw;
+        padding-right: 25vw;
+    }
 
     .left {
         display: flex;
@@ -15,18 +21,36 @@
             font-size: 80px;
             color: white;
             font-weight: 700;
+            @include lg{
+                font-size: 65px;
+            }
+            @include md{
+                font-size: 55px;
+            }
         }
 
         h2 {
             font-size: 30px;
             color: white;
             margin-top: 1vh;
+            @include lg{
+                font-size: 23px;
+            }
+            @include md{
+                font-size: 18px;
+            }
         }
 
         h3 {
             font-size: 20px;
             color: rgb(255, 234, 0);
             margin-top: 1vh;
+            @include lg{
+                font-size: 16px;
+            }
+            @include md{
+                font-size: 12px;
+            }
         }
     }
 

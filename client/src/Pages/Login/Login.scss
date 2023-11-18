@@ -1,3 +1,5 @@
+@import "../../css-config/mixins.scss";
+
 .login_Container {
     width: 100vw;
     height: 100vh;
@@ -27,10 +29,19 @@
         background-color: white;
         padding: 4vh 3vw;
         border-radius: 5px;
+        @include lg{
+            width: 27rem;
+        }
+        @include md{
+            width: 25rem;
+        }
 
         .formHeading {
             font-size: 35px;
             margin-bottom: 2rem;
+            @include lg{
+                font-size: 33px;
+            }
         }
 
         .labelInput {
@@ -43,6 +54,9 @@
             label {
                 font-size: 20px;
                 font-weight: 600;
+                @include lg{
+                    font-size: 17px;
+                }
             }
 
             input {
@@ -53,6 +67,9 @@
                 border-right: none;
                 border-bottom: 2px solid #092143;
                 height: 1.7rem;
+                @include lg{
+                    font-size: 16px;
+                }
 
             }
             .password_container{
@@ -66,6 +83,9 @@
                     border-bottom: 2px solid #092143;
                     height: 1.7rem;
                     width: 100%;
+                    @include lg{
+                        font-size: 16px;
+                    }
                 }
                 .icon{
                     position: absolute;
@@ -94,12 +114,19 @@
                 margin-top: 2rem;
                 margin-bottom: 1rem;
                 border-radius: 3px;
+                @include lg{
+                    font-size: 16px;
+                    height: 2.5rem;
+                }
             }
 
             .registerLink_Box {
                 display: flex;
                 font-size: 15px;
                 gap: 5px;
+                @include lg{
+                    font-size: 13px;
+                }
 
                 .register_Link {
                     color: #092143;

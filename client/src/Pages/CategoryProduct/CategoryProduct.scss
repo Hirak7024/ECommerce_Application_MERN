@@ -1,3 +1,5 @@
+@import "../../css-config/mixins.scss";
+
 .CategoryProduct_Container{
     width: 100vw;
     display: flex;
@@ -10,12 +12,21 @@
         gap: 1.5rem;
         padding-left: 2vw;
         position: fixed;
+        @include lg{
+            gap: 1rem;
+        }
         .sidebar_categories{
             display: flex;
             flex-direction: column;
             .select_categories_heading{
                 font-size: 20px;
                 margin-bottom: 7px;
+                @include lg{
+                    font-size: 17px;
+                }
+                @include md{
+                    font-size: 15px;
+                }
             }
             .sidebar_label{
                 margin-bottom: 5px;
@@ -29,6 +40,12 @@
                 .checkmark{
                     font-size: 16px;
                     font-weight: 500;
+                    @include lg{
+                        font-size: 14px;
+                    }
+                    @include md{
+                        font-size: 13px;
+                    }
                 }
             }
         }
@@ -40,10 +57,17 @@
         align-items: center;
         gap: 3rem;
         position: relative;
-        left: 20rem;
+        left: 20vw;
+        padding: 0 3vw;
         .heading{
             font-size: 45px;
             font-weight: 700;
+            @include lg{
+                font-size: 35px;
+            }
+            @include md{
+                font-size: 30px;
+            }
         }
         .ProductsContainer{
             width: 100%;
