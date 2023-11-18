@@ -1,3 +1,5 @@
+@import "../../css-config/mixins.scss";
+
 .app_container{
     display: flex;
     flex-direction: column;
@@ -7,10 +9,16 @@
         .loading_text{
             font-size: 17px;
             font-weight: 600;
+            @include xsm{
+              font-size: 8px;
+            }
         }
         .error_text{
             font-size: 17px;
             font-weight: 600;
+            @include xsm{
+              font-size: 8px;
+            }
         }
       .paginated_products{
         display: flex;

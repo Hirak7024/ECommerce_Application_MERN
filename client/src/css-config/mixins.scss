@@ -1,5 +1,10 @@
-@mixin sm {
+@mixin xsm {
     @media (width <= 425px) {
+        @content;
+    }
+}
+@mixin sm {
+    @media (width <= 600px) {
         @content;
     }
 }

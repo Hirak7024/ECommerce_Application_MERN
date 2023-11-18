@@ -7,6 +7,9 @@
     align-items: center;
     padding: 10vh 5vw;
     gap: 4rem;
+    @include sm{
+        gap: 2rem;
+    }
     .bestSelling_Heading{
         font-size: 45px;
         @include lg{
@@ -14,6 +17,12 @@
         }
         @include md{
             font-size: 28px;
+        }
+        @include sm{
+            font-size: 23px;
+        }
+        @include xsm{
+            font-size: 19px;
         }
     }
     .card_Container{
@@ -24,10 +33,16 @@
        .loading_text{
         font-size: 20px;
         font-weight: 700;
+        @include xsm{
+            font-size: 10px;
+        }
        }
        .error_text{
         font-size: 20px;
         font-weight: 700;
+        @include xsm{
+            font-size: 12px;
+        }
        }
        .bestSelling_Container{
         width: 100%;
@@ -35,6 +50,12 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 4vh 3vw;
+        @include sm{
+            gap: 5vh 2vw;
+        }
+        @include xsm{
+            gap: 4vh 5vw;
+        }
            .card_To_Product_Link{
                color: black;
                text-decoration: none;

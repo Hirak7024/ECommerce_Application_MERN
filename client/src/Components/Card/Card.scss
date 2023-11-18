@@ -17,7 +17,13 @@
     }
     @include md{
       width: 14rem;
-  }
+    }
+    @include sm{
+      width: 11rem;
+    }
+    @include xsm{
+      width: 8rem;
+    }
     cursor: pointer;
     .like_icon{
         width: 2rem;
@@ -30,6 +36,14 @@
         @include lg{
           width: 1.8rem;
           height: 1.8rem;
+        }
+        @include sm{
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+        @include xsm{
+          width: 1.2rem;
+          height: 1.2rem;
         }
     }
     .like_icon:hover{
@@ -44,6 +58,12 @@
       height: 14rem;
       @include lg{
         height: 13rem;
+      }
+      @include sm{
+        height: 9rem;
+      }
+      @include xsm{
+        height: 6rem;
       }
       .product_img{
         width: 100%;
@@ -61,6 +81,13 @@
       @include lg{
         font-size: 20px;
       }
+      @include sm{
+        font-size: 14px;
+      }
+      @include xsm{
+        font-size: 11px;
+        margin-top: 7px;
+      }
     }
     .product_desc{
       font-size: 14px;
@@ -72,12 +99,25 @@
       @include lg{
         font-size: 12px;
       }
+      @include sm{
+        font-size: 10px;
+      }
+      @include xsm{
+        font-size: 7px;
+        margin: 5px 0;
+      }
     }
     .product_price{
       font-size: 18px;
       font-weight: 500;
       @include lg{
         font-size: 16px;
+      }
+      @include sm{
+        font-size: 12px;
+      }
+      @include xsm{
+        font-size: 8px;
       }
     }
   }

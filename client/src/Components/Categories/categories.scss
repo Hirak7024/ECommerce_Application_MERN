@@ -14,6 +14,12 @@
         @include md{
             font-size: 30px;
         }
+        @include sm{
+            font-size: 25px;
+        }
+        @include xsm{
+            font-size: 20px;
+        }
     }
 
     .img-container {
@@ -22,6 +28,9 @@
         padding: 0 8vw;
         justify-content: space-between;
         align-items: center;
+        @include sm{
+            padding: 0 4vw;
+        }
         .img-container-items {
             display: flex;
             justify-content: center;
@@ -44,6 +53,12 @@
                 }
                 @include md{
                     font-size: 15px;
+                }
+                @include sm{
+                    font-size: 12px;
+                }
+                @include xsm{
+                    font-size: 10px;
                 }
             }
         }

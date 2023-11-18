@@ -6,6 +6,9 @@
     align-items: center;
     gap: 3rem;
     padding: 5vh 5vw;
+    @include xsm{
+        gap: 1.5rem;
+    }
     .wishListedProductsHeading{
         font-size: 40px;
         @include lg{
@@ -13,6 +16,9 @@
         }
         @include md{
             font-size: 30px;
+        }
+        @include xsm{
+            font-size: 18px;
         }
         
     }

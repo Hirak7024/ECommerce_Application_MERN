@@ -11,7 +11,14 @@
     color: white;
     @include lg{
         padding: 0 2rem;
-        height: 80px;
+        height: 70px;
+    }
+    @include md{
+        padding: 0 1rem;
+    }
+    @include sm{
+        padding: 0 10px;
+        height: 60px;
     }
     .left {
         flex: 1;
@@ -19,8 +26,17 @@
             font-size: 30px;
             font-weight: 500;
             cursor: pointer;
-            @include md{
+            @include lg{
                 font-size: 20px;
+            }
+            @include md{
+                font-size: 18px;
+            }
+            @include sm{
+                font-size: 14px;
+            }
+            @include xsm{
+                font-size: 10px;
             }
         }
     }
@@ -44,7 +60,13 @@
                 height: 43px ;
             }
             @include md{
-                height: 40px ;
+                height: 37px ;
+            }
+            @include sm{
+                height: 33px;
+            }
+            @include xsm{
+                height: 28px;
             }
 
             input {
@@ -57,7 +79,10 @@
                     font-size: 16px;
                 }
                 @include md{
-                    font-size: 14px;
+                    font-size: 11px;
+                }
+                @include sm{
+                    font-size: 8px;
                 }
             }
 
@@ -72,9 +97,18 @@
                     width: 60px;
                     height: 33px;
                 }
-                @include lg{
-                    width: 50px;
-                    height: 30px;
+                @include md{
+                    width: 40px;
+                    height: 28px;
+                }
+                @include sm {
+                    width: 30px;
+                    height: 25px;
+                }
+                @include xsm{
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 3px;
                 }
             }
 
@@ -118,8 +152,16 @@
                         height: 1.7rem;
                     }
                     @include md{
-                        width: 1.5rem;
-                        height: 1.5rem;
+                        width: 1.2rem;
+                        height: 1.2rem;
+                    }
+                    @include sm{
+                        width: 1rem ;
+                        height: 1rem;
+                    }
+                    @include xsm{
+                        width: 0.8rem;
+                        height: 0.8rem;
                     }
                 }
 
@@ -140,6 +182,18 @@
                         width: 15px;
                         height: 15px;
                         font-size: 9px;
+                    }
+                    @include sm{
+                        width: 12px;
+                        height: 12px;
+                        font-size: 7px;
+                    }
+                    @include xsm{
+                        width: 9px;
+                        height: 9px;
+                        font-size: 5px;
+                        top: 1%;
+                        right: -25%;
                     }
                 }
             }
@@ -170,10 +224,18 @@
                 gap: 2px;
             }
             @include md{
-                width: 70px;
-                height: 33px;
+                width: 60px;
+                height: 25px;
                 border-radius: 2px;
                 gap: 2px;
+            }
+            @include sm{
+                width: 40px;
+                height: 22px;
+            }
+            @include xsm{
+                width: 30px;
+                height: 20px;
             }
             .right_icons{
                 width: 1.5rem;
@@ -183,8 +245,16 @@
                     height: 1.2rem;
                 }
                 @include md{
-                    width: 1.1rem;
-                    height: 1.1rem;
+                    width: 0.7rem;
+                    height: 0.7rem;
+                }
+                @include sm{
+                    width: 0.5rem;
+                    height: 0.5rem;
+                }
+                @include xsm{
+                    width: 0.4rem;
+                    height: 0.4rem;
                 }
             }
 
@@ -194,8 +264,14 @@
                 @include lg{
                     font-size: 14px;
                 }
-                @include lg{
-                    font-size: 13px;
+                @include md{
+                    font-size: 10px;
+                }
+                @include sm{
+                    font-size: 7px;
+                }
+                @include xsm{
+                    font-size: 6px;
                 }
             }
         }
@@ -230,10 +306,21 @@
                 border-radius: 3px;
             }
             @include lg{
-                width: 70px;
-                height: 35px;
+                width: 50px;
+                height: 25px;
                 border-radius: 2px;
-                font-size: 13px;
+                font-size: 10px;
+            }
+            @include sm{
+                width: 40px;
+                height: 22px;
+                border-radius: 2px;
+                font-size: 8px;
+            }
+            @include xsm{
+                width: 30px;
+                height: 20px;
+                font-size: 6px;
             }
         }
 

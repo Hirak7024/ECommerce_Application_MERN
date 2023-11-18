@@ -13,6 +13,11 @@
         padding-left: 10vw;
         padding-right: 25vw;
     }
+    @include xsm{
+        padding-left: 5vw;
+        padding-right: 24vw;
+        height: 40vh;
+    }
 
     .left {
         display: flex;
@@ -22,10 +27,16 @@
             color: white;
             font-weight: 700;
             @include lg{
-                font-size: 65px;
+                font-size: 55px;
             }
             @include md{
-                font-size: 55px;
+                font-size: 45px;
+            }
+            @include sm{
+                font-size: 35px;
+            }
+            @include xsm{
+                font-size: 30px;
             }
         }
 
@@ -34,10 +45,16 @@
             color: white;
             margin-top: 1vh;
             @include lg{
-                font-size: 23px;
+                font-size: 21px;
             }
             @include md{
-                font-size: 18px;
+                font-size: 16px;
+            }
+            @include sm{
+                font-size: 13px;
+            }
+            @include xsm{
+                font-size: 10px;
             }
         }
 
@@ -46,10 +63,16 @@
             color: rgb(255, 234, 0);
             margin-top: 1vh;
             @include lg{
-                font-size: 16px;
+                font-size: 14px;
             }
             @include md{
-                font-size: 12px;
+                font-size: 10px;
+            }
+            @include sm{
+                font-size: 9px;
+            }
+            @include xsm{
+                font-size: 6px;
             }
         }
     }
@@ -61,15 +84,25 @@
             width: 20vw;
             height: auto;
             object-fit: contain;
+           
+            @include md{
+                width: 30vw;
+            }
         }
         #img2{
             position: absolute;
-            left: 12vw;
+            left: 10vw;
             top: 1.5vw;
+            @include md{
+                left: 16vw;
+            }
         }
         #img3{
             position: absolute;
-            left: 22vw;
+            left: 18vw;
+            @include md{
+                left: 25vw;
+            }
         }
 
     }

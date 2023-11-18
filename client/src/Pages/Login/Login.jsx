@@ -110,7 +110,7 @@ export default function Register() {
               value={formData.Password}
               onChange={handleChange}
             />
-            {showPassword ? <AiFillEye className='icon' size={22} onClick={toggleShowPassword} /> : <AiFillEyeInvisible className='icon' size={22} onClick={toggleShowPassword} />}
+            {showPassword ? <AiFillEye className='icon' onClick={toggleShowPassword} /> : <AiFillEyeInvisible className='icon' size={22} onClick={toggleShowPassword} />}
           </div>
           <p className="error">{errors.Password}</p>
         </div>

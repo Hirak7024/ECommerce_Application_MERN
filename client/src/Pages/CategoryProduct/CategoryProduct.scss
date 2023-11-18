@@ -27,6 +27,12 @@
                 @include md{
                     font-size: 15px;
                 }
+                @include sm{
+                    font-size: 10px;
+                }
+                @include xsm{
+                    font-size: 7px;
+                }
             }
             .sidebar_label{
                 margin-bottom: 5px;
@@ -36,6 +42,14 @@
                 cursor: pointer;
                 .sidebar_input{
                     cursor: pointer;
+                    @include sm{
+                        width: 7px;
+                        height: 7px;
+                    }
+                    @include xsm{
+                        width: 5px;
+                        height: 5px;
+                    }
                 }
                 .checkmark{
                     font-size: 16px;
@@ -45,6 +59,12 @@
                     }
                     @include md{
                         font-size: 13px;
+                    }
+                    @include sm{
+                        font-size: 9px;
+                    }
+                    @include xsm{
+                        font-size: 6px;
                     }
                 }
             }
@@ -59,6 +79,9 @@
         position: relative;
         left: 20vw;
         padding: 0 3vw;
+        @include sm{
+            gap: 1rem;
+        }
         .heading{
             font-size: 45px;
             font-weight: 700;
@@ -67,6 +90,12 @@
             }
             @include md{
                 font-size: 30px;
+            }
+            @include sm{
+                font-size: 25px;
+            }
+            @include xsm{
+                font-size: 15px;
             }
         }
         .ProductsContainer{

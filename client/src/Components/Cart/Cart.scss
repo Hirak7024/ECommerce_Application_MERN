@@ -26,6 +26,9 @@
         @include lg{
             width: 20rem;
         }
+        @include xsm{
+            width: 100%;
+        }
         
 
         .cartContainerHead {
