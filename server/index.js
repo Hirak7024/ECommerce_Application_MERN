@@ -18,6 +18,10 @@ mongoose.connect(process.env.MONGO_CONNECTION_URL, {useNewUrlParser: true, useUn
 
 mongoose.connection.on("disconnected",()=>console.log("MongoDB Disconnected"));
 
+app.get("/", (req,res)=>{
+    res.send("Heyy This is the Backend PORT for MERN Ecommerce WebApplication");
+  })
+
 app.use("/api/products", ProductRoute);
 app.use("/api/users", UserRoute);
 
