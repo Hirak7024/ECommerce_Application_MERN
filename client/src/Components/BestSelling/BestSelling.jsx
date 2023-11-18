@@ -5,7 +5,7 @@ import axios from "axios";
 import "./BestSelling.scss";
 
 export default function BestSelling() {
-    const [bestSellingProducts, setBestSellingProducts] = useState();
+    const [bestSellingProducts, setBestSellingProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     
