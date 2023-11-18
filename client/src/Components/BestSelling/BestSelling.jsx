@@ -32,14 +32,13 @@ export default function BestSelling() {
                 {loading ? (<h1 className="loading_text">Loading ...</h1>) : error ? 
                 (<h1 className='error_text'>Some Error Occured ...</h1>) : 
                 <div className='bestSelling_Container'>
-                    {bestSellingProducts?.map((item) => (
+                    {bestSellingProducts && (bestSellingProducts?.map((item) => (
                         <Link to={`/productPage/${item._id}`} key={item._id} className='card_To_Product_Link'>
                             <Card key={item._id} post={item} />
                         </Link>
-                    ))}
+                    )))}
                 </div>
                 }
-
             </div>
         </div>
     )

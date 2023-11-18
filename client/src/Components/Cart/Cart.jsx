@@ -37,9 +37,9 @@ export default function Cart() {
                                 <button className='returnToShop' onClick={() => setShowCart(false)}>Return To Shop</button>
                             </div> :
                             <div>
-                                {cart?.map((item) => (
+                                {cart && (cart?.map((item) => (
                                     <CartItem key={item._id} cartItem={item} />
-                                ))}
+                                )))}
                             </div>
                         }
                     </div>

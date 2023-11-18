@@ -22,11 +22,11 @@ export default function WishListPage() {
               <div className="wishListedProducts_Container">
                 {
                   wishListedProducts.length !== 0 ? (<>
-                    {wishListedProducts?.map((item) => (
+                    {wishListedProducts && (wishListedProducts?.map((item) => (
                       <Link to={`/productPage/${item._id}`} key={item._id} className='card_To_Product_Link'>
                         <Card key={item._id} post={item} />
                       </Link>
-                    ))}
+                    )))}
                   </>) : (
                     <h1 className='noProducts_head'>No Products available</h1>
                   )
