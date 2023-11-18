@@ -57,12 +57,12 @@ export default function Register() {
 
   const loginUser = async () => {
     try {
-      const response = await axios.post("/api/users/login", formData);
+      const response = await axios.post("https://mern-ecommerce-web-application.onrender.com/api/users/login", formData);
       const { userResponse, token } = response.data.data;
       // console.log(response.data.data);
 
       const userID = response.data.data.userResponse._id;
-      const response2 = await axios.post("/api/products/getProducts/wishlisted", { userId: userID });
+      const response2 = await axios.post("https://mern-ecommerce-web-application.onrender.com/api/products/getProducts/wishlisted", { userId: userID });
       setWishListedProducts(response2.data.wishlistedProducts);
       const message = response.data.message;
       setUserData({ userResponse, token })

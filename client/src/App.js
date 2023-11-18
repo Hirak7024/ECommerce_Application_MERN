@@ -22,7 +22,7 @@ export default function App() {
       const authToken = localStorage.getItem("authToken");
 
       if (authToken) {
-        const response = await axios.get('/api/users/getDecode/TokenPayload', {
+        const response = await axios.get('https://mern-ecommerce-web-application.onrender.com/api/users/getDecode/TokenPayload', {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -30,7 +30,7 @@ export default function App() {
 
         //fetching the wishlisted products here only so that everytime the page reloads, it can directly get the userId from the response of decodedToken.
         const userID = response.data.payload._id;
-        const response2 = await axios.post("/api/products/getProducts/wishlisted", { userId: userID });
+        const response2 = await axios.post("https://mern-ecommerce-web-application.onrender.com/api/products/getProducts/wishlisted", { userId: userID });
         setWishListedProducts(response2.data.wishlistedProducts);
 
         // Check if the token is still valid
@@ -85,7 +85,7 @@ fetchData();
         <Route path='/register' element={<Register />} />
         <Route path='/productPage/:id' element={<ProductPage />} />
         <Route path='/wishlistPage' element={<WishListPage />} />
-        <Route path={`/categoryProduct/:pageNumber`} element={<CategoryProduct />} />
+        <Route path="/categoryProduct/:pageNumber" element={<CategoryProduct />} />
       </Routes>
       <ToastContainer />
     </>

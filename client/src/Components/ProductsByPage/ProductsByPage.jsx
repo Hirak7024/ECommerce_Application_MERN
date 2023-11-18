@@ -29,7 +29,7 @@ const ProductsByPage = ({
         const fetchPosts = async () => {
             setLoading(true);
             try {
-                const res = await axios.get(`/api/products/getProducts?page=${page}&category=${selectedCategory === "all" ? "" : selectedCategory}&minPrice=${minPrice}&maxPrice=${maxPrice}`)
+                const res = await axios.get(`https://mern-ecommerce-web-application.onrender.com/api/products/getProducts?page=${page}&category=${selectedCategory === "all" ? "" : selectedCategory}&minPrice=${minPrice}&maxPrice=${maxPrice}`)
 
                 setPages(res.data.pages);
                 setPosts(res.data.data);

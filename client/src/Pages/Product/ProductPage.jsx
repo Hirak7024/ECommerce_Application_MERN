@@ -32,7 +32,7 @@ export default function ProductPage() {
     const fetchProductDetails = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/api/products/getProductById/${id}`)
+        const response = await axios.get(`https://mern-ecommerce-web-application.onrender.com/api/products/getProductById/${id}`)
 
         setSingleProduct(response.data);
         setLoading(false);
@@ -55,7 +55,7 @@ export default function ProductPage() {
   const addProductToWishList = async () => {
     try {
       const response = await axios.post(
-        '/api/products/addProducts/toWishlist',
+        'https://mern-ecommerce-web-application.onrender.com/api/products/addProducts/toWishlist',
         {
           productId: singleProduct._id,
           userId: userData.userResponse._id

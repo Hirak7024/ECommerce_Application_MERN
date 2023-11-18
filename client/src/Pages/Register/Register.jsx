@@ -70,7 +70,7 @@ export default function Register() {
 
   const registerUser = async () => {
     try {
-      const response = await axios.post("/api/users/register", formData);
+      const response = await axios.post("https://mern-ecommerce-web-application.onrender.com/api/users/register", formData);
       const { user, token } = response.data.data;
       const message = response.data.message;
       setUserData({ user, token });

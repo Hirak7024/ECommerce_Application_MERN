@@ -20,7 +20,7 @@ export default function Card({ post }) {
     const addProductToWishList = async () => {
         try {
             const response = await axios.post(
-                '/api/products/addProducts/toWishlist',
+                'https://mern-ecommerce-web-application.onrender.com/api/products/addProducts/toWishlist',
                 {
                     productId: post._id,
                     userId: userData.userResponse._id

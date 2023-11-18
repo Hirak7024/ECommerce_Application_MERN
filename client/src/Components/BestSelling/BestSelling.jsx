@@ -13,7 +13,7 @@ export default function BestSelling() {
         const fetchBestSellingProducts = async (req, res) => {
             setLoading(true);
             try {
-                const response = await axios.get("/api/products/products/bestSelling")
+                const response = await axios.get("https://mern-ecommerce-web-application.onrender.com/api/products/products/bestSelling")
 
                 setBestSellingProducts(response.data);
                 setLoading(false);
