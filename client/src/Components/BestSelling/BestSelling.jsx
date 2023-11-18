@@ -8,7 +8,7 @@ export default function BestSelling() {
     const [bestSellingProducts, setBestSellingProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    
+
     useEffect(() => {
         const fetchBestSellingProducts = async (req, res) => {
             setLoading(true);
@@ -29,15 +29,29 @@ export default function BestSelling() {
         <div className='BestSelling_Container'>
             <h1 className='bestSelling_Heading'>Best Selling Products</h1>
             <div className="card_Container">
-                {loading ? (<h1 className="loading_text">Loading ...</h1>) : error ? 
-                (<h1 className='error_text'>Some Error Occured ...</h1>) : 
-                <div className='bestSelling_Container'>
-                    {bestSellingProducts && (bestSellingProducts?.map((item) => (
-                        <Link to={`/productPage/${item._id}`} key={item._id} className='card_To_Product_Link'>
-                            <Card key={item._id} post={item} />
-                        </Link>
-                    )))}
-                </div>
+                {loading ? (<h1 className="loading_text">Loading ...</h1>) : error ?
+                    (<h1 className='error_text'>Some Error Occured ...</h1>) :
+                    <>
+                        {Array.isArray(bestSellingProducts) && bestSellingProducts.length > 0 ? (
+                            <div className='bestSelling_Container'>
+                                {bestSellingProducts.map((item) => (
+                                    <Link to={`/productPage/${item._id}`} key={item._id} className='card_To_Product_Link'>
+                                        <Card key={item._id} post={item} />
+                                    </Link>
+                                ))}
+                            </div>
+                        ) : (
+                            <h1 className='error_text'>No Best Selling Products Available</h1>
+                        )}
+
+                    </>
+                    // <div className='bestSelling_Container'>
+                    //     {bestSellingProducts && (bestSellingProducts?.map((item) => (
+                    //         <Link to={`/productPage/${item._id}`} key={item._id} className='card_To_Product_Link'>
+                    //             <Card key={item._id} post={item} />
+                    //         </Link>
+                    //     )))}
+                    // </div>
                 }
             </div>
         </div>
