@@ -18,7 +18,7 @@ const RegisterUser = async (req, res) => {
         const user = await newUser.save();
 
         const token = jwt.sign({
-            Name: user.Name, Email: user.Email, id: user._id
+            Name: user.Name, Email: user.Email, _id: user._id
         }, process.env.JWT_KEY, { expiresIn: 60 * 60 * 24 })
 
         const userResponse = {
