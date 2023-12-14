@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10vh 5vw;
+    padding: 10vh 0vw;
     gap: 4rem;
     @include sm{
         gap: 2rem;
@@ -45,17 +45,39 @@
         }
        }
        .bestSelling_Container{
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
+        // width: 100%;
+        // display: flex;
+        // flex-wrap: wrap;
+        // justify-content: center;
+        // gap: 4vh 3vw;
+        // @include sm{
+        //     gap: 5vh 2vw;
+        // }
+        // @include xsm{
+        //     gap: 4vh 5vw;
+        // }
+        width: 100vw;
+        padding: 0 3vw;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(17rem,17rem));
+        grid-gap: 3rem;
         justify-content: center;
-        gap: 4vh 3vw;
-        @include sm{
-            gap: 5vh 2vw;
-        }
-        @include xsm{
-            gap: 4vh 5vw;
-        }
+        @include lg{
+            grid-template-columns: repeat(auto-fit, minmax(16rem,16rem));
+            grid-gap: 2.5rem;
+          }
+          @include md{
+            grid-template-columns: repeat(auto-fit, minmax(14rem,14rem));
+          }
+          @include sm{
+            grid-template-columns: repeat(auto-fit, minmax(11rem,11rem));
+            grid-gap: 1.5rem;
+            padding: 0 2vw;
+          }
+          @include xsm{
+            grid-template-columns: repeat(auto-fit, minmax(8rem,8rem));
+            grid-gap: 1.5rem;
+          }
            .card_To_Product_Link{
                color: black;
                text-decoration: none;
